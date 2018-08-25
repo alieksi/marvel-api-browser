@@ -1,18 +1,53 @@
 <html>
 
-  <head>
-    <!-- CSS -->
-    <link rel="stylesheet" type="text/css" href="/css/semantic.min.css">
+<head>
+  <!-- CSS -->
+  <link rel="stylesheet" type="text/css" href="/css/semantic.min.css">
 
-    <title>Marvel API Browser</title>
-  </head>
+  <title>Marvel API Browser</title>
+</head>
 
-  <body>
-    <% include component/search %>
+<body>
+  <div class="ui container">
+    <!-- Navbar -->
+    <% include component/navbar %>
 
-    <!-- Javascript -->
-    <script src="/js/jquery.min.js"></script>
-    <script src="/js/semantic.min.js"></script>
-  </body>
+      <!-- Segment -->
+      <div class="ui grid center aligned">
+        <div class="ten wide column">
+          <% include component/segment %>
+        </div>
+      </div>
+
+      <!-- Search -->
+      <div class="ui equal width center aligned padded grid">
+        <div class="row">
+          <div class="column">
+            <% include component/search %>
+          </div>
+        </div>
+      </div>
+
+      <div class="ui horizontal divider">
+        Search Results
+      </div>
+
+      <!-- Search Results -->
+      <div class="ui grid center aligned">
+        <div class="row">
+          <% include component/searchResult %>
+        </div>
+
+        <!-- Pagination -->
+        <div class="row">
+          <% include component/pagination %>
+        </div>
+      </div>
+  </div>
+  
+  <!-- Javascript -->
+  <script src="/js/jquery.min.js"></script>
+  <script src="/js/semantic.min.js"></script>
+</body>
 
 </html>
