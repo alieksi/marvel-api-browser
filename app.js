@@ -1,8 +1,9 @@
 const express = require('express');
-const chalk = require('chalk');
-const debug = require('debug')('MarvelAPI');
 const morgan = require('morgan');
 const path = require('path');
+const MarvelAPI = require('./source/service/MarvelAPI');
+const MarvelAPIcontroller = require('./source/controller/MarvelAPIController');
+const MarvelAPIRouter = require('./source/router/MarvelAPIRouter');
 
 // Enviroment Values
 const port = process.env.PORT || 3000;
@@ -22,11 +23,17 @@ app.use('/js', express.static(path.join(__dirname, 'node_modules', 'jquery', 'di
 app.set('views', './view');
 app.set('view engine', 'ejs');
 
+// Route Settings
+const router = express.Router();
+const marvelAPI = new MarvelAPI('', '');
+const marvelAPIController = new MarvelAPIcontroller(marvelAPI);
+const marvelAPIRouter = new MarvelAPIRouter(marvelAPIController, router);
+
 app.get('/', (req, res) => {
   res.render('index');
 });
 
+app.use('/api', marvelAPIRouter.route());
+
 // Listen on port
-app.listen(port, () => {
-  debug(`Listening on port ${chalk.green(port)}`);
-});
+app.listen(port);
