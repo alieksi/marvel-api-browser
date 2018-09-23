@@ -12,10 +12,10 @@
     - [x] Connected to Marvel API and got character information.
     - [x] Controller is added for handling API response.
     - [x] Created API Router for character requests.
-- [ ] Show character information on UI.
+- [x] Show character information on UI.
     - [x] UI events are added to get information based on user input.
     - [x] Add loader to block UI when getting information from API.
-    - [ ] Control user input and give proper error message on modal.
+    - [x] Control user input and give proper error message on modal.
     - [x] Show all character list on UI.
 - [ ] Filtering character information according to specific properties.
 - [ ] Create pagination for search results.
