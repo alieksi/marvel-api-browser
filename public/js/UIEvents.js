@@ -15,6 +15,15 @@ function unblockUI(selector) {
   $.unblockUI(selector);
 }
 
+function ModalWarning(message) {
+  $('#modalMessage').empty();
+  $('#modalMessage').append(message);
+
+  $('.ui.basic.modal').modal({
+    closable: true,
+  }).modal('show');
+}
+
 function fetchData(url, onSucceed) {
   blockUI('#mainContainerId');
 
@@ -22,8 +31,7 @@ function fetchData(url, onSucceed) {
     .then(response => response.json())
     .catch((error) => {
       unblockUI('#mainContainerId');
-      console.log(error);
-      // modal that error
+      ModalWarning(error.message);
     })
     .then((response) => {
       onSucceed(JSON.stringify(response));
@@ -32,28 +40,33 @@ function fetchData(url, onSucceed) {
 }
 
 function appendSearchResult(selector, data) {
-  $(selector).empty();
+  if (data.length === 0) {
+    const characterName = $('#characterNameId').val();
+    ModalWarning(`No result found for ${characterName}`);
+  } else {
+    $(selector).empty();
 
-  let searchHTMLData = '<div class="ui link cards centered">';
-  data.forEach((element) => {
-    searchHTMLData = searchHTMLData.concat(`<div resourceuri="${element.resourceURI}" class="card">`
-      + `<div class="image"><img src="${element.thumbnail}"></div>`
-      + '<div class="content">'
-      + `<div class="header">${element.name}</div>`
-      + `<div class="description">${element.description}</div>`
-      + '</div>'
-      + '</div>');
-  });
-  searchHTMLData.concat('</div>');
+    let searchHTMLData = '<div class="ui link cards centered">';
+    data.forEach((element) => {
+      searchHTMLData = searchHTMLData.concat(`<div resourceuri="${element.resourceURI}" class="card">`
+        + `<div class="image"><img src="${element.thumbnail}"></div>`
+        + '<div class="content">'
+        + `<div class="header">${element.name}</div>`
+        + `<div class="description">${element.description}</div>`
+        + '</div>'
+        + '</div>');
+    });
+    searchHTMLData.concat('</div>');
 
-  $(selector).append(searchHTMLData);
+    $(selector).append(searchHTMLData);
+  }
 }
 
 $('body').on('click', '#searchButtonId', () => {
   const characterName = $('#characterNameId').val();
 
   if (characterName === '') {
-    // modal that error
+    ModalWarning('Enter a character name!');
   } else {
     fetchData(`./api/getCharacter/${characterName}`,
       (data) => {
