@@ -8,7 +8,7 @@
 </head>
 
 <body>
-  <div class="ui container">
+  <div id="mainContainerId" class="ui container">
     <!-- Navbar -->
     <% include component/navbar %>
 
@@ -34,8 +34,8 @@
 
       <!-- Search Results -->
       <div class="ui grid center aligned">
-        <div class="row">
-          <% include component/searchResult %>
+        <div id="searchResultId" class="row">
+          
         </div>
 
         <!-- Pagination -->
@@ -47,6 +47,7 @@
   
   <!-- Javascript -->
   <script src="/js/jquery.min.js"></script>
+  <script src="/js/jquery.blockUI.js"></script>
   <script src="/js/semantic.min.js"></script>
   <script src="/js/UIEvents.js"></script>
 </body>

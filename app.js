@@ -20,6 +20,7 @@ app.use('/css', express.static(path.join(__dirname, 'node_modules', 'semantic-ui
 app.use('/css', express.static(path.join(__dirname, 'node_modules', 'semantic-ui', 'dist', 'components')));
 app.use('/js', express.static(path.join(__dirname, 'node_modules', 'semantic-ui', 'dist')));
 app.use('/js', express.static(path.join(__dirname, 'node_modules', 'jquery', 'dist')));
+app.use('/js', express.static(path.join(__dirname, 'node_modules', 'block-ui')));
 app.set('views', './view');
 app.set('view engine', 'ejs');
 
