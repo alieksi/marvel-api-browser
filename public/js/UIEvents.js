@@ -65,7 +65,7 @@ function appendSearchResult(selector, data) {
   }
 }
 
-$('body').on('click', '#searchButtonId', () => {
+function getCharacter() {
   const characterName = $('#characterNameId').val();
 
   if (characterName === '') {
@@ -79,6 +79,16 @@ $('body').on('click', '#searchButtonId', () => {
         appendSearchResult('#searchResultId', parsedData);
       });
   }
+}
+
+$('body').on('keypress', '#characterNameId', (event) => {
+  if (event.which === 13) {
+    getCharacter();
+  }
+});
+
+$('body').on('click', '#searchButtonId', () => {
+  getCharacter();
 });
 
 $('body').on('click', '.card', function cardClickEvent() {
