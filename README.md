@@ -17,7 +17,9 @@
     - [x] Add loader to block UI when getting information from API.
     - [x] Control user input and give proper error message on modal.
     - [x] Show all character list on UI.
-- [ ] Filtering character information according to specific properties.
+- ~~[ ] Filtering character information according to specific properties.~~
+- [x] Add click event to search result for showing detailed information about character
+- [ ] Add key('Enter') event to search character
 - [ ] Create pagination for search results.
 
 # Attribution

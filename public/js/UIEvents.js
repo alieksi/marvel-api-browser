@@ -1,5 +1,7 @@
 /* eslint-env browser,jquery */
 
+let searchResults = [];
+
 function blockUI(selector) {
   $.blockUI({
     selector,
@@ -30,11 +32,12 @@ function fetchData(url, onSucceed) {
   fetch(url)
     .then(response => response.json())
     .catch((error) => {
-      unblockUI('#mainContainerId');
       ModalWarning(error.message);
     })
     .then((response) => {
       onSucceed(JSON.stringify(response));
+    })
+    .finally(() => {
       unblockUI('#mainContainerId');
     });
 }
@@ -47,8 +50,8 @@ function appendSearchResult(selector, data) {
     $(selector).empty();
 
     let searchHTMLData = '<div class="ui link cards centered">';
-    data.forEach((element) => {
-      searchHTMLData = searchHTMLData.concat(`<div resourceuri="${element.resourceURI}" class="card">`
+    data.forEach((element, i) => {
+      searchHTMLData = searchHTMLData.concat(`<div characterindex="${i}" class="card">`
         + `<div class="image"><img src="${element.thumbnail}"></div>`
         + '<div class="content">'
         + `<div class="header">${element.name}</div>`
@@ -70,15 +73,36 @@ $('body').on('click', '#searchButtonId', () => {
   } else {
     fetchData(`./api/getCharacter/${characterName}`,
       (data) => {
-        appendSearchResult('#searchResultId', JSON.parse(data));
+        const parsedData = JSON.parse(data);
+        searchResults = parsedData.slice();
+
+        appendSearchResult('#searchResultId', parsedData);
       });
   }
 });
 
 $('body').on('click', '.card', function cardClickEvent() {
-  const resourceURI = $(this).attr('resourceuri');
+  const characterIndex = $(this).attr('characterindex');
 
-  if (resourceURI !== undefined && resourceURI !== '') {
-    window.open(resourceURI, '_blank');
+  if (characterIndex !== undefined && characterIndex !== '') {
+    // Clear character modal information
+    $('#characterModal > .content > .ui.small.image').empty();
+    $('#characterModal > .content > .description > .ui.header').empty();
+    $('#characterModal > .content > .description > .ui.list').empty();
+
+    // Get selected character
+    const selectedCharacter = searchResults[characterIndex];
+
+    let urls = '';
+    selectedCharacter.urls.forEach((url) => {
+      urls = urls.concat(`<a class='item' target='_blank' href='${url.url}'>${url.type}</a>`);
+    });
+
+    // Append information
+    $('#characterModal > .content > .ui.small.image').append(`<image src='${selectedCharacter.thumbnail}' >`);
+    $('#characterModal > .content > .description > .ui.header').append(`${selectedCharacter.name}`);
+    $('#characterModal > .content > .description > .ui.list').append(`${urls}`);
+
+    $('#characterModal').modal('show');
   }
 });

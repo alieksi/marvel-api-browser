@@ -8,9 +8,7 @@
 </head>
 
 <body>
-  <div id="mainContainerId" class="ui container">
-    <!-- Navbar -->
-    <% include component/navbar %>
+  <div style="margin-top: 20px;" id="mainContainerId" class="ui container">
 
       <!-- Segment -->
       <div class="ui grid center aligned">
@@ -54,6 +52,24 @@
     <div class="ui grid centered actions">
       <div style="margin-left: 0px; margin-right: 0px;" class="ui white basic cancel inverted button">
         <i class="remove icon"></i>
+        Close
+      </div>
+    </div>
+  </div>
+
+  <!-- Character Information Modal -->
+  <div id="characterModal" class="ui tiny modal">
+    <div class="header">Character Information</div>
+    <div class="image content">
+      <div class="ui small image">       
+      </div>
+      <div class="description">
+        <div class="ui header"></div>
+        <div style="text-transform: capitalize;" class="ui list"></div>
+      </div>
+    </div>
+    <div class="actions">
+      <div class="ui right labeled deny button">
         Close
       </div>
     </div>
