@@ -1,11 +1,31 @@
 # Marvel API Browser
-**Marvel API Browser** uses [Marvel Developer API](https://developer.marvel.com/) to get character, comics information.
+**Marvel API Browser** uses [Marvel Developer API](https://developer.marvel.com/) to get character information.
 
-## Building With
-- NodeJS
-- Semantic-UI
+![](1.jpg)
+![](2.jpg)
+
+## Built With
+- Node.js
+- Semantic UI
 - Express
 - EJS
+
+## Installation
+```
+$ git clone https://github.com/alieksi/marvel-api-browser.git
+$ cd marvel-api-browser
+$ npm install
+```
+
+After `npm install`, enter your Marvel Comics API public and private keys to `app.js` file.
+```javascript
+const marvelAPI = new MarvelAPI('PUBLIC KEY', 'PRIVATE KEY');
+```
+
+To run project:
+```
+$ npm start
+```
 
 ## To Do
 - [x] Getting character information from [Marvel Developer API](https://developer.marvel.com/).
