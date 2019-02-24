@@ -26,6 +26,7 @@
     "jquery": "^3.3.1",
     "morgan": "^1.9.0",
     "nodemon": "^1.18.3",
+    "paginationjs": "^2.1.4",
     "path": "^0.12.7",
     "semantic-ui": "^2.3.3"
   },

@@ -3,6 +3,7 @@
 <head>
   <!-- CSS -->
   <link rel="stylesheet" type="text/css" href="/css/semantic.min.css">
+  <link rel="stylesheet" type="text/css" href="/css/pagination.css">
 
   <title>Marvel API Browser</title>
 </head>
@@ -26,19 +27,18 @@
         </div>
       </div>
 
-      <div class="ui horizontal divider">
+      <div style="display: none;" class="ui horizontal divider">
         Search Results
       </div>
 
       <!-- Search Results -->
       <div class="ui grid center aligned">
-        <div id="searchResultId" class="row">
-          
+        <div id="searchResultId" class="row">       
         </div>
 
         <!-- Pagination -->
         <div class="row">
-          <% include component/pagination %>
+          <div id="paginationId"></div>
         </div>
       </div>
   </div>
@@ -79,6 +79,7 @@
   <script src="/js/jquery.min.js"></script>
   <script src="/js/jquery.blockUI.js"></script>
   <script src="/js/semantic.min.js"></script>
+  <script src="/js/pagination.min.js"></script>
   <script src="/js/UIEvents.js"></script>
 </body>
 

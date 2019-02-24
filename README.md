@@ -1,5 +1,5 @@
 # Marvel API Browser
-**Marvel API Browser** is going to use [Marvel Developer API](https://developer.marvel.com/) to get character, comics information.
+**Marvel API Browser** uses [Marvel Developer API](https://developer.marvel.com/) to get character, comics information.
 
 ## Building With
 - NodeJS
@@ -17,10 +17,10 @@
     - [x] Add loader to block UI when getting information from API.
     - [x] Control user input and give proper error message on modal.
     - [x] Show all character list on UI.
-- ~~ Filtering character information according to specific properties.~~
-- [x] Add click event to search result for showing detailed information about character
-- [x] Add key('Enter') event to search character
-- [ ] Create pagination for search results.
+- [ ]  ~~Filtering character information according to specific properties.~~
+- [x] Add click event to search result for showing detailed information about character.
+- [x] Add key('Enter') event to search character.
+- [x] Create pagination for search results.
 
 # Attribution
-**Data provided by Marvel. © 2018 MARVEL**
+**Data provided by Marvel. © 2019 MARVEL**

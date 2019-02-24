@@ -1,6 +1,7 @@
 /* eslint-env browser,jquery */
 
 let searchResults = [];
+const PAGE_SIZE = 3;
 
 function blockUI(selector) {
   $.blockUI({
@@ -42,16 +43,22 @@ function fetchData(url, onSucceed) {
     });
 }
 
-function appendSearchResult(selector, data) {
+function appendSearchResult(selector, data, pagination) {
+  $(selector).empty();
+
   if (data.length === 0) {
+    $('.ui.horizontal.divider').css('display', 'none');
+
     const characterName = $('#characterNameId').val();
     ModalWarning(`No result found for ${characterName}`);
   } else {
-    $(selector).empty();
+    $('.ui.horizontal.divider').css('display', '');
 
     let searchHTMLData = '<div class="ui link cards centered">';
     data.forEach((element, i) => {
-      searchHTMLData = searchHTMLData.concat(`<div characterindex="${i}" class="card">`
+      const characterIndex = ((pagination.pageNumber - 1) * PAGE_SIZE) + i;
+
+      searchHTMLData = searchHTMLData.concat(`<div characterindex="${characterIndex}" class="card">`
         + `<div class="image"><img src="${element.thumbnail}"></div>`
         + '<div class="content">'
         + `<div class="header">${element.name}</div>`
@@ -65,6 +72,16 @@ function appendSearchResult(selector, data) {
   }
 }
 
+function getPages(searchData) {
+  $('#paginationId').pagination({
+    dataSource: searchData,
+    pageSize: PAGE_SIZE,
+    callback: (data, pagination) => {
+      appendSearchResult('#searchResultId', data, pagination);
+    },
+  });
+}
+
 function getCharacter() {
   const characterName = $('#characterNameId').val();
 
@@ -76,7 +93,7 @@ function getCharacter() {
         const parsedData = JSON.parse(data);
         searchResults = parsedData.slice();
 
-        appendSearchResult('#searchResultId', parsedData);
+        getPages(parsedData);
       });
   }
 }
