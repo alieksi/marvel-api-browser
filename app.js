@@ -16,10 +16,10 @@ app.use(morgan('tiny'));
 
 // Making static files accessible
 app.use(express.static(path.join(__dirname, 'public')));
-app.use('/css', express.static(path.join(__dirname, 'node_modules', 'semantic-ui', 'dist')));
-app.use('/css', express.static(path.join(__dirname, 'node_modules', 'semantic-ui', 'dist', 'components')));
+app.use('/css', express.static(path.join(__dirname, 'node_modules', 'semantic-ui-css')));
+app.use('/css', express.static(path.join(__dirname, 'node_modules', 'semantic-ui-css', 'components')));
 app.use('/css', express.static(path.join(__dirname, 'node_modules', 'paginationjs', 'dist')));
-app.use('/js', express.static(path.join(__dirname, 'node_modules', 'semantic-ui', 'dist')));
+app.use('/js', express.static(path.join(__dirname, 'node_modules', 'semantic-ui-css')));
 app.use('/js', express.static(path.join(__dirname, 'node_modules', 'jquery', 'dist')));
 app.use('/js', express.static(path.join(__dirname, 'node_modules', 'block-ui')));
 app.use('/js', express.static(path.join(__dirname, 'node_modules', 'paginationjs', 'dist')));

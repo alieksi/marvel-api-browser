@@ -16,19 +16,19 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.20.0",
     "block-ui": "^2.70.1",
-    "chalk": "^2.4.1",
-    "debug": "^3.1.0",
-    "ejs": "^2.6.1",
+    "chalk": "^4.1.0",
+    "debug": "^4.2.0",
+    "ejs": "^3.1.5",
     "express": "^4.16.3",
     "g": "^2.0.1",
     "jquery": "^3.3.1",
     "morgan": "^1.9.0",
-    "nodemon": "^1.18.3",
+    "nodemon": "^2.0.6",
     "paginationjs": "^2.1.4",
     "path": "^0.12.7",
-    "semantic-ui": "^2.3.3"
+    "semantic-ui-css": "^2.4.1"
   },
   "nodemonConfig": {
     "restartable": "rs",
@@ -42,8 +42,8 @@
     }
   },
   "devDependencies": {
-    "eslint": "^5.4.0",
-    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint": "^7.11.0",
+    "eslint-config-airbnb-base": "^14.2.0",
     "eslint-plugin-import": "^2.14.0"
   }
 }
